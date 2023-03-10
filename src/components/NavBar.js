@@ -7,8 +7,11 @@ import Button from "@mui/material/Button";
 import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
 import { PageContext } from "../context/PageContext";
+import { ProductsContext } from "../context/ProductsContext";
 function NavBar() {
   const { page, setPage } = React.useContext(PageContext);
+  const { productsQtyInBasket } = React.useContext(ProductsContext);
+
   return (
     <Box
       sx={{
@@ -18,7 +21,10 @@ function NavBar() {
     >
       <AppBar
         position="static"
-        style={{ background: "white", boxShadow: "none" }}
+        style={{
+          background: "white",
+          boxShadow: "none",
+        }}
       >
         <Toolbar>
           {/* <IconButton
@@ -34,7 +40,14 @@ function NavBar() {
           <Typography
             variant="h6"
             component="div"
-            sx={{ flexGrow: 1, color: "#1484CB", cursor: "pointer" }}
+            sx={{
+              color: page === 0 ? "white" : "#1484CB",
+              background: page === 0 ? "#1484CB" : "white",
+              borderRadius: "45%",
+              cursor: "pointer",
+              margin: "auto",
+              padding: 1,
+            }}
             onClick={() => setPage(0)}
           >
             Home
@@ -42,7 +55,14 @@ function NavBar() {
           <Typography
             variant="h6"
             component="div"
-            sx={{ flexGrow: 1, color: "#1484CB", cursor: "pointer" }}
+            sx={{
+              color: page === 1 ? "white" : "#1484CB",
+              background: page === 1 ? "#1484CB" : "white",
+              borderRadius: "45%",
+              cursor: "pointer",
+              margin: "auto",
+              padding: 1,
+            }}
             onClick={() => setPage(1)}
           >
             Products
@@ -50,13 +70,25 @@ function NavBar() {
           <Typography
             variant="h6"
             component="div"
-            sx={{ flexGrow: 1, color: "#1484CB", cursor: "pointer" }}
+            sx={{
+              color: page === 2 ? "white" : "#1484CB",
+              background: page === 2 ? "#1484CB" : "white",
+              borderRadius: "45%",
+              cursor: "pointer",
+              margin: "auto",
+              padding: 1,
+            }}
             onClick={() => setPage(2)}
           >
             About
           </Typography>
-          <Button color="inherit">
-            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAACXBIWXMAAAsTAAALEwEAmpwYAAADzklEQVR4nO2Yf2gTVxzAn/tDhtAxoSobduwPoa3O/qC1MhdM3q0rFKkMsWNqSVvYhgjiX2OmydaVtbZWapXWHxXF9l6MUNg0KXR/+EcN5kIpVMkl98yaLFXTtPlxuaRjs/9Y37ikUWcqXDpt7iQf+MBxf3zffe4d748DIEeOHDmyyqaBB3s2XfTN5Pf5/Ot7vbVAaWy8MO3P7/OR93u95OMzU8Rs5/40M7h7dHzqPaAE8vt8fvHh87o9pOC0m1jseEmOGRubfhfInfW93tq8bo9/3Qn3o3Xt7tqbDFduYbBHjBix4W+BErnJ4K8Tu8DgW0CJ/GrFHyQDuDghZA1QIntNwpM6U4xUG+c9FB23QTo+QqE4DdF8F4Xmj0Fa0FK0UFc9JKjgYHRbtSnyIZATB4f5IIX+IknnlzG+jLEFio7NQjrGUXTMBunYCIViNERCF4WEZPQ1oa76mqCCpjcc/c1vQWvmAYmIdI3CK4wSCkUfQ8Q/ohB/D6LoLcrIm6Ax0gdR5GeI+KMQhQ9AxNd8bgqX11yPFrS2knckBRy5EWpflQDjcvLLGEmKIsOSAg6ev1+h6ZgiNT3exarO6cmdpx4yu87MWFXngmOqgZBVfTnCqK9GJ6nBmBvS8QBE8X9WIwAaw2MSPyKypsrALZbpMCl9Jpe0JWnJS5a24IWyn3CovM3trezwsDtO+iaqeh7advX7b6sG5qy7Lwdt6qvhCc0Qz2roqBciPpRxAAr3SwwAoOYEDmcSILo9oSvNT/Qv6yTbRA2uxyVtOFDa/oe7omtqckePj9l59oH10/P+26pLAevuK3OMejA4SQ2F3RCFA9RQ8LDkgC9PcbY3HqD/r1tTGlKyCYuXLNQ7NZID6ntdJ+UWsEV3d4PkgC86nJ/JKkDPRkAmbG11ra3Qc09lE2BwSD2BngN/wVH5BLDST6AUmjbn73IJKPrRcSTjgHKd66h8Alh1xgElP7hUcgnYkskJlKLw+/t5pce5xWwHFOnZUMYP/2wXdNiT7YDilZxALwQMZz+A7V95wHGsy3ZA0UpOoBRlOqzOdkBhC1u54oDhO66PvrvILVQaVj+g2MD+XWxwdIL/g8XOXRf/UpgZPDo67tgMlIbFzgXEgBsTzgKgRCxLAYp8+yIWO2dKfUKK3IXRccdmC8Pxz3/8rq5mBt95PRF2zmRmXLOKDEhxqLG5q6GxmbyoeA/IdG4aDY1Ns+Lwffu/SphYSNs8B2Q6N40GbVMgbaHG5hkg07mStrpB29Qp17lp1NfXr00sJr4xbVNAvBbvAZnOzZHjbedf5PTvpg+FQXcAAAAASUVORK5CYII=" />
+          <Button
+            color="inherit"
+            className="basket_image"
+            sx={{ margin: "auto" }}
+          >
+            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAoCAYAAACM/rhtAAAACXBIWXMAAAsTAAALEwEAmpwYAAACiklEQVR4nO2YTYhNYRjHf8glccfO+CpGpmFqFixYUMpi7IYywoKFiShRMs3CZhQpWQxSPjMbC2JDmY0sLFBYMNNkr1whgxofk67eek79vXPO7cw959xz0/3XU/f+n+d9zu92zvtxLjTUUCwVgD3ANQv3eSZ1ombgFVD24qXlcocbFahPFsH30TwhfbjLdqtdXMkbcgEwLBAOaLrkpwEXJf8WWFQvcLlCxoXLBdLBjUwBTiEvZA1ZLVxNIJPCZQqZFlwmkGnDJYY8CYyFbFm1ji/ACR9ubR2Alb3oUMBOSdwBzuQUd4VjswIukcRR8tNx4Zi0f5csMUh+umUM78KSDy35JiQ3A2iJaNpkM96X84oRY1ZYT1/B6eh+2KBTlpwA5ni5m5br9fwi8AH4AbSJvwr4aXdlnjemz3rd8Py5wB/L9YcBbpf7v97LPTd/yPPbZUy3+N3iuxrVkPmup2qDjNkaBtgiBYe83D3zh1MAHDHfzVjVERmzNGqF/2wFV73cefO/pQD41fyBiMfoIxX0SF54VL1ywWICwCbx3ZKieh3xGP2js1b0C5gl/i5pvDoBYLv4O8WfDfw2/3QlwN3SYI34G8XvTAC4RXw3KQKti+gzSW1S2CP+cvH3JQDsEX+Z+AfFd2tkpNxx6rsVXhK/YOujvxaulMZd4neJ72r8Z3nCegYKXlPHbLJW1BMrfhZyHHsKtHo/6Lqt/EVvMjywv0H0DNlqPfyF+IVd8zExNGDF4zX6f6Vgu4675rk4A3TGbsuejx1xJ0ig+XKyLtkMzkqbbGEu2ybh9uNY2u+dbt/bc5JmlLxr7J3qrztsp5RyxjEOHKBKLbYtyR1ib6ccg8AxYGG1cA39F/oLHq2fhHcJl4IAAAAASUVORK5CYII=" />
+            <span className="basketQty">{productsQtyInBasket}</span>
           </Button>
         </Toolbar>
       </AppBar>

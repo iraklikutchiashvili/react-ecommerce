@@ -5,9 +5,11 @@ import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
+import { ProductsContext } from "../context/ProductsContext";
 
 export default function ProductCard(props) {
   const [productsQty, setProductsQty] = React.useState(0);
+  const { handleAddToBasketClick } = React.useContext(ProductsContext);
   const increaseProductsQty = () => {
     setProductsQty(productsQty + 1);
   };
@@ -53,7 +55,12 @@ export default function ProductCard(props) {
         </Button>
       </CardActions>
 
-      <Button variant="contained" size="small" fullWidth={true}>
+      <Button
+        onClick={() => handleAddToBasketClick(productsQty, setProductsQty)}
+        variant="contained"
+        size="small"
+        fullWidth={true}
+      >
         Add To Basket
       </Button>
     </Card>

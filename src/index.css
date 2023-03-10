@@ -9,3 +9,19 @@
   justify-content: flex-start;
   gap: 40px;
 }
+.basket_image {
+  position: relative;
+}
+.basketQty {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 17px;
+  height: 17px;
+  font-size: 10px;
+  border-radius: 50%;
+  position: absolute;
+  background: #1484cb;
+  left: 55%;
+  top: 67%;
+}
