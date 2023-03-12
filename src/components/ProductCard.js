@@ -19,12 +19,12 @@ export default function ProductCard(props) {
     }
   };
   return (
-    <Card sx={{ maxWidth: 200, marginTop: 10 }}>
+    <Card sx={{ maxWidth: 200, marginTop: 10, paddingTop: 1 }}>
       <CardMedia
         sx={{ objectFit: "contain" }}
         component="img"
         alt="green iguana"
-        height="100"
+        height="80"
         image="https://image-optimizer-reg.production.sephora-asia.net/images/product_images/1_Product_3614227086227-Marc-Jacobs-MARC-JACOBS-FRAGRANCES-Perfect-Eau-de-Parfum-100ml-upd_208c475641e9c4f17932e6852e74419e622bd613_1675693529.png"
       />
       <CardContent>
@@ -33,6 +33,9 @@ export default function ProductCard(props) {
         </Typography>
         <Typography variant="body2" color="text.secondary">
           Product Description
+        </Typography>
+        <Typography gutterBottom variant="h5" component="div">
+          Price
         </Typography>
       </CardContent>
       <CardActions>

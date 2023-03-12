@@ -7,6 +7,12 @@ const ProductsContextProvider = (props) => {
     const localData = localStorage.getItem("produqtsQtyInBasket");
     return localData ? Number(localData) : 0;
   });
+  const [products, setProducts] = useState({
+    name: "",
+    description: "",
+    img: "",
+    price: "",
+  });
   const handleAddToBasketClick = (productsQty, clearQtyInCard) => {
     setProductsQtyInBasket((prev) => prev + productsQty);
     clearQtyInCard(0);

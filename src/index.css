@@ -9,9 +9,7 @@
   justify-content: flex-start;
   gap: 40px;
 }
-.basket_image {
-  position: relative;
-}
+
 .basketQty {
   display: flex;
   justify-content: center;
@@ -24,4 +22,17 @@
   background: #1484cb;
   left: 55%;
   top: 67%;
+}
+.basket-content {
+  position: absolute;
+  right: 25%;
+  top: 20%;
+  display: none;
+  transition: "all .2s ease-in-out";
+}
+.basket-content:hover {
+  transform: scale(1.05);
+}
+.show {
+  display: block;
 }
