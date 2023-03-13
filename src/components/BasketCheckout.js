@@ -3,13 +3,15 @@ import { Button } from "@mui/material";
 import { ProductsContext } from "../context/ProductsContext";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
+import { PageContext } from "../context/PageContext";
 
 
 const BasketCheckout = () => {
-    const {productsQtyInBasket} = React.useContext(ProductsContext);
+  const { setPage } = React.useContext(PageContext);
+  const {productsQtyInBasket} = React.useContext(ProductsContext);
     return (
         <>
-        <Box sx={{mt: 3, ml: 2, display: "flex", justifyContent: "space-between"}}>
+        <Box sx={{mt: 3, display: "flex", justifyContent: "space-between"}}>
         <Typography
           sx={{  fontWeight: "bold" }}
           component="div"
@@ -31,6 +33,7 @@ const BasketCheckout = () => {
           variant="contained"
           size="medium"
           fullWidth={true}
+          onClick={() => setPage(3)}
         >
           View Basket & Checkout
         </Button>
