@@ -12,9 +12,7 @@ function App() {
           <NavBar />
           <Content />
         </ProductsContextProvider>
-        {/* <Products /> */}
       </PageContextProvider>
-      {/* <Footer /> */}
     </div>
   );
 }

@@ -1,9 +1,9 @@
 import React, { useContext } from "react";
 import { PageContext } from "../context/PageContext";
-import AboutPage from "./AboutPage";
-import HomePage from "./HomePage";
-import Products from "./Products";
-import MyBasket from "./MyBasket";
+import AboutPage from "../pages/AboutPage";
+import HomePage from "../pages/HomePage";
+import Products from "../pages/Products";
+import MyBasket from "../pages/MyBasket";
 const Content = () => {
   const { page } = useContext(PageContext);
   return (
