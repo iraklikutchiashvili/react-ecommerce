@@ -7,9 +7,10 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import { ProductsContext } from "../context/ProductsContext";
 
-export default function ProductCard(props) {
+function ProductCard({ data }) {
   const [productsQty, setProductsQty] = React.useState(0);
   const { handleAddToBasketClick } = React.useContext(ProductsContext);
+
   const increaseProductsQty = () => {
     setProductsQty(productsQty + 1);
   };
@@ -18,27 +19,49 @@ export default function ProductCard(props) {
       setProductsQty(productsQty - 1);
     }
   };
+
   return (
-    <Card sx={{ maxWidth: 200, marginTop: 10, paddingTop: 1 }}>
+    <Card
+      sx={{
+        maxWidth: 350,
+        width: "100%",
+        marginTop: 10,
+      }}
+    >
       <CardMedia
-        sx={{ objectFit: "contain" }}
+        sx={{ objectFit: "cover" }}
         component="img"
-        alt="green iguana"
-        height="80"
-        image="https://image-optimizer-reg.production.sephora-asia.net/images/product_images/1_Product_3614227086227-Marc-Jacobs-MARC-JACOBS-FRAGRANCES-Perfect-Eau-de-Parfum-100ml-upd_208c475641e9c4f17932e6852e74419e622bd613_1675693529.png"
+        alt="product"
+        height="300"
+        image={`https://${data.imageUrl}`}
       />
-      <CardContent>
-        <Typography gutterBottom variant="h5" component="div">
-          Product
-        </Typography>
-        <Typography variant="body2" color="text.secondary">
-          Product Description
-        </Typography>
-        <Typography gutterBottom variant="h5" component="div">
-          Price
+      <CardContent
+        sx={{
+          height: 80,
+          display: "flex",
+          flexDirection: "column",
+        }}
+      >
+        <Typography
+          sx={{
+            fontSize: "20px",
+            fontWeight: "bold",
+            textAlign: "center",
+            color: "#1484cb",
+          }}
+          component="div"
+        >
+          {data.name.toUpperCase()}
         </Typography>
       </CardContent>
-      <CardActions>
+      <Typography
+        sx={{ textAlign: "center", fontWeight: "bold" }}
+        variant="h6"
+        component="div"
+      >
+        {data.price.current.text}
+      </Typography>
+      <CardActions sx={{ display: "flex", justifyContent: "center", mt: 3 }}>
         <Button
           variant="outlined"
           color="primary"
@@ -63,9 +86,12 @@ export default function ProductCard(props) {
         variant="contained"
         size="small"
         fullWidth={true}
+        sx={{ mt: 3 }}
       >
         Add To Basket
       </Button>
     </Card>
   );
 }
+
+export default ProductCard;

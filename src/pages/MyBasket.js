@@ -11,7 +11,7 @@ const MyBasket = () => {
         display: "flex",
         gap: 5,
         flexDirection: "column",
-        maxWidth: 800,
+        maxWidth: 1000,
         width: "100%",
         margin: "150px auto",
       }}
