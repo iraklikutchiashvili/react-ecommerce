@@ -1,10 +1,14 @@
 import { Card, CardContent } from "@mui/material";
 import { Box } from "@mui/system";
-import React from "react";
+import React, { useContext } from "react";
 import BasketCard from "../components/BasketCard";
 import Checkout from "../components/Checkout";
+import { ProductsContext } from "../context/ProductsContext";
+import uuid from "react-uuid";
 
 const MyBasket = () => {
+  const { productsInBasket } = useContext(ProductsContext);
+
   return (
     <Box
       sx={{
@@ -16,31 +20,17 @@ const MyBasket = () => {
         margin: "150px auto",
       }}
     >
-      <Card>
-        <CardContent>
-          <BasketCard />
-        </CardContent>
-      </Card>
-      <Card>
-        <CardContent>
-          <BasketCard />
-        </CardContent>
-      </Card>
-      <Card>
-        <CardContent>
-          <BasketCard />
-        </CardContent>
-      </Card>
-      <Card>
-        <CardContent>
-          <BasketCard />
-        </CardContent>
-      </Card>
-      <Card>
-        <CardContent>
-          <BasketCard />
-        </CardContent>
-      </Card>
+      {!productsInBasket ? (
+        <p>Empty</p>
+      ) : (
+        productsInBasket.map((product) => (
+          <Card key={uuid()}>
+            <CardContent>
+              <BasketCard product={product} />
+            </CardContent>
+          </Card>
+        ))
+      )}
       <Checkout />
     </Box>
   );

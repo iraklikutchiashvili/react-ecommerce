@@ -98,7 +98,10 @@ function NavBar() {
             }}
             onMouseEnter={() => showBasket()}
             onMouseLeave={() => hideBasket()}
-            onClick={() => setPage(3)}
+            onClick={() => {
+              setPage(3);
+              window.scrollTo(0, 0);
+            }}
           >
             <img
               alt="basket logo"

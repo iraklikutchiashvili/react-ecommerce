@@ -8,15 +8,34 @@ import Typography from "@mui/material/Typography";
 import { ProductsContext } from "../context/ProductsContext";
 
 function ProductCard({ data }) {
-  const [productsQty, setProductsQty] = React.useState(0);
   const { handleAddToBasketClick } = React.useContext(ProductsContext);
+  const [products, setProducts] = React.useState({
+    quantity: 0,
+    name: "",
+    price: 0,
+    img: "",
+    id: "",
+  });
+
+  React.useEffect(() => {
+    setProducts((prev) => ({
+      ...prev,
+      name: data.name.toUpperCase(),
+      price: data.price.current.text,
+      img: `https://${data.imageUrl}`,
+      id: data.id,
+    }));
+  }, []);
 
   const increaseProductsQty = () => {
-    setProductsQty(productsQty + 1);
+    setProducts((prev) => ({ ...prev, quantity: products.quantity + 1 }));
   };
   const decreaseProductsQty = () => {
-    if (productsQty > 0) {
-      setProductsQty(productsQty - 1);
+    if (products.quantity > 0) {
+      setProducts((prev) => ({
+        ...prev,
+        quantity: products.quantity - 1,
+      }));
     }
   };
 
@@ -33,7 +52,7 @@ function ProductCard({ data }) {
         component="img"
         alt="product"
         height="300"
-        image={`https://${data.imageUrl}`}
+        image={products.img}
       />
       <CardContent
         sx={{
@@ -51,7 +70,7 @@ function ProductCard({ data }) {
           }}
           component="div"
         >
-          {data.name.toUpperCase()}
+          {products.name}
         </Typography>
       </CardContent>
       <Typography
@@ -59,7 +78,7 @@ function ProductCard({ data }) {
         variant="h6"
         component="div"
       >
-        {data.price.current.text}
+        {products.price}
       </Typography>
       <CardActions sx={{ display: "flex", justifyContent: "center", mt: 3 }}>
         <Button
@@ -70,7 +89,7 @@ function ProductCard({ data }) {
         >
           +
         </Button>
-        <b style={{ marginLeft: 7, fontSize: 20 }}>{productsQty}</b>
+        <b style={{ marginLeft: 7, fontSize: 20 }}>{products.quantity}</b>
         <Button
           variant="outlined"
           color="error"
@@ -82,7 +101,7 @@ function ProductCard({ data }) {
       </CardActions>
 
       <Button
-        onClick={() => handleAddToBasketClick(productsQty, setProductsQty)}
+        onClick={() => handleAddToBasketClick(products, setProducts)}
         variant="contained"
         size="small"
         fullWidth={true}

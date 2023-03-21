@@ -16,7 +16,7 @@ const Products = () => {
         store: "US",
         offset: "5",
         categoryId: "4209",
-        limit: "48",
+        limit: "24",
         country: "US",
         sort: "freshness",
         currency: "USD",
@@ -31,9 +31,7 @@ const Products = () => {
     axios
       .request(options)
       .then((response) => {
-        console.log(response.data.products);
         const productsList = response.data.products;
-        console.log(productsList);
         setProducts((prev) => [...prev, ...productsList]);
         setIsFetching(false);
       })
@@ -45,9 +43,8 @@ const Products = () => {
   useEffect(() => {
     fetchData();
   }, []);
-  // console.log(products);
   return isFetching ? (
-    <img style={{ margin: "40vh auto auto 45vw" }} src={loading} />
+    <img style={{ margin: "40vh auto auto 45%" }} src={loading} />
   ) : (
     <div className="products">
       {products.map((product) => (
