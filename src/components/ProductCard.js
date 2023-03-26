@@ -21,7 +21,7 @@ function ProductCard({ data }) {
     setProducts((prev) => ({
       ...prev,
       name: data.name.toUpperCase(),
-      price: data.price.current.text,
+      price: data.price.current,
       img: `https://${data.imageUrl}`,
       id: data.id,
     }));
@@ -78,7 +78,7 @@ function ProductCard({ data }) {
         variant="h6"
         component="div"
       >
-        {products.price}
+        {products.price.text}
       </Typography>
       <CardActions sx={{ display: "flex", justifyContent: "center", mt: 3 }}>
         <Button

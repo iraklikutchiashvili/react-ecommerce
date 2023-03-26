@@ -7,7 +7,14 @@ import { PageContext } from "../context/PageContext";
 
 const BasketCheckout = () => {
   const { setPage } = React.useContext(PageContext);
-  const { productsQtyInBasket, products } = React.useContext(ProductsContext);
+  const { productsQtyInBasket, productsInBasket } =
+    React.useContext(ProductsContext);
+
+
+  const totalPrice = productsInBasket !== null && productsInBasket.map(product => product.quantity * product.price.value).reduce((total, current) => total + current)
+
+
+
   return (
     <>
       <Box sx={{ mt: 3, display: "flex", justifyContent: "space-between" }}>
@@ -20,11 +27,12 @@ const BasketCheckout = () => {
           <span style={{ fontWeight: 300 }}>{productsQtyInBasket} (items)</span>
         </Typography>
         <Typography
-          sx={{ fontWeight: "bold" }}
+          sx={{ fontWeight: "bold", ml: 3 }}
           component="div"
           color="text.primary"
         >
-          Total Price:
+          Total Price:{" "}
+          ${totalPrice ? totalPrice : 0}
         </Typography>
       </Box>
 

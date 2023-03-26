@@ -6,12 +6,13 @@ import Typography from "@mui/material/Typography";
 import { PageContext } from "../context/PageContext";
 
 const Checkout = () => {
-  const { productsQtyInBasket } = React.useContext(ProductsContext);
+  const { productsQtyInBasket, productsInBasket } = React.useContext(ProductsContext);
   const { setPage } = React.useContext(PageContext);
   const handleClick = () => {
     setPage(1);
     window.scrollTo(0, 0);
   };
+  const totalPrice = productsInBasket !== null && productsInBasket.map(product => product.quantity * product.price.value).reduce((total, current) => total + current)
   return (
     <>
       <Box sx={{ mt: 3, display: "flex", justifyContent: "space-between" }}>
@@ -28,7 +29,7 @@ const Checkout = () => {
           component="div"
           color="text.primary"
         >
-          Total Price
+          Total Price: ${totalPrice ? totalPrice : 0}
         </Typography>
       </Box>
       <Box sx={{ mt: 1, display: "flex", justifyContent: "space-between" }}>

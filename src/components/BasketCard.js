@@ -4,6 +4,7 @@ import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import { Button } from "@mui/material";
 function BasketCard(product) {
+ 
   return (
     <Box sx={{ display: "flex", justifyContent: "space-between" }}>
       <CardMedia
@@ -39,7 +40,7 @@ function BasketCard(product) {
           sx={{ mb: 4, textAlign: "center", fontSize: 15, fontWeight: "bold" }}
           component="div"
         >
-          {product.product.price}
+          {"$" + product.product.quantity * product.product.price.value}
         </Typography>
         <Button>Remove</Button>
       </Box>
