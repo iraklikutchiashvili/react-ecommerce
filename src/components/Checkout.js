@@ -21,7 +21,14 @@ const Checkout = () => {
       .reduce((total, current) => total + current);
   return (
     <>
-      <Box sx={{ mt: 3, display: "flex", justifyContent: "space-between" }}>
+      <Box
+        sx={{
+          mt: 3,
+          display: "flex",
+          justifyContent: "space-between",
+          p: "10px",
+        }}
+      >
         <Typography
           sx={{ fontWeight: "bold" }}
           component="div"
@@ -40,18 +47,13 @@ const Checkout = () => {
       </Box>
       <Box sx={{ mt: 1, display: "flex", justifyContent: "space-between" }}>
         <Button
-          sx={{ borderRadius: 15, height: 50 }}
+          sx={{ borderRadius: 15, height: 50, width: 150, fontSize: "10px" }}
           variant="outlined"
           onClick={handleClick}
-          size="small"
         >
           Continue Shopping
         </Button>
-        <Button
-          sx={{ borderRadius: 15, height: 50 }}
-          variant="contained"
-          size="large"
-        >
+        <Button sx={{ borderRadius: 15, height: 50 }} variant="contained">
           Proceed to Checkout
         </Button>
       </Box>

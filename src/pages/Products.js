@@ -44,7 +44,11 @@ const Products = () => {
     fetchData();
   }, []);
   return isFetching ? (
-    <img style={{ margin: "40vh auto auto 45%" }} src={loading} />
+    <div
+      style={{ display: "flex", justifyContent: "center", marginTop: "50vh" }}
+    >
+      <img src={loading} />
+    </div>
   ) : (
     <div className="products">
       {products.map((product) => (

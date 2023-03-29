@@ -9,7 +9,6 @@ const ProductsContextProvider = (props) => {
   });
   const [productsInBasket, setProductsInBasket] = useState(() => {
     const localData = JSON.parse(localStorage.getItem("products"));
-    console.log(localData);
     return localData && localData;
   });
 

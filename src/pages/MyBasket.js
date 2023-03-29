@@ -31,7 +31,9 @@ const MyBasket = () => {
           </Card>
         ))
       )}
-      <Checkout />
+      <Box sx={{ p: 1 }}>
+        <Checkout />
+      </Box>
     </Box>
   );
 };

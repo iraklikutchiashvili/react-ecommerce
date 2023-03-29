@@ -14,6 +14,7 @@ function NavBar() {
   const { page, setPage } = React.useContext(PageContext);
   const { productsQtyInBasket } = React.useContext(ProductsContext);
   const basketContentRef = React.useRef(null);
+  const [showNav, setShowNav] = React.useState(false);
 
   const showBasket = () => {
     basketContentRef.current.classList.add("show");
@@ -21,6 +22,8 @@ function NavBar() {
   const hideBasket = () => {
     basketContentRef.current.classList.remove("show");
   };
+
+  const handleBurgerClick = () => {};
 
   return (
     <Box>
@@ -32,61 +35,65 @@ function NavBar() {
         }}
       >
         <Toolbar>
-          {/* <IconButton
-            size="large"
-            edge="start"
-            color="inherit"
-            aria-label="menu"
-            sx={{ mr: 2 }}
-            style={{ color: "#1484CB" }}
-          >
-            <MenuIcon />
-          </IconButton> */}
-          <Typography
-            variant="h6"
-            component="div"
-            sx={{
-              color: page === 0 ? "white" : "#1484CB",
-              background: page === 0 ? "#1484CB" : "white",
-              borderRadius: "45%",
-              cursor: "pointer",
-              margin: "auto",
-              padding: 1,
-            }}
-            onClick={() => setPage(0)}
-          >
-            Home
-          </Typography>
-          <Typography
-            variant="h6"
-            component="div"
-            sx={{
-              color: page === 1 ? "white" : "#1484CB",
-              background: page === 1 ? "#1484CB" : "white",
-              borderRadius: "45%",
-              cursor: "pointer",
-              margin: "auto",
-              padding: 1,
-            }}
-            onClick={() => setPage(1)}
-          >
-            Products
-          </Typography>
-          <Typography
-            variant="h6"
-            component="div"
-            sx={{
-              color: page === 2 ? "white" : "#1484CB",
-              background: page === 2 ? "#1484CB" : "white",
-              borderRadius: "45%",
-              cursor: "pointer",
-              margin: "auto",
-              padding: 1,
-            }}
-            onClick={() => setPage(2)}
-          >
-            About
-          </Typography>
+          <div className="burger-icon">
+            <IconButton
+              size="large"
+              edge="start"
+              color="inherit"
+              aria-label="menu"
+              sx={{ color: "#1484CB" }}
+              onClick={handleBurgerClick}
+            >
+              <MenuIcon sx={{ fontSize: 35 }} />
+            </IconButton>
+          </div>
+          <div className="nav-links">
+            <Typography
+              variant="h6"
+              component="div"
+              sx={{
+                color: page === 0 ? "white" : "#1484CB",
+                background: page === 0 ? "#1484CB" : "white",
+                borderRadius: "45%",
+                cursor: "pointer",
+                margin: "auto",
+                padding: 1,
+              }}
+              onClick={() => setPage(0)}
+            >
+              Home
+            </Typography>
+            <Typography
+              variant="h6"
+              component="div"
+              sx={{
+                color: page === 1 ? "white" : "#1484CB",
+                background: page === 1 ? "#1484CB" : "white",
+                borderRadius: "45%",
+                cursor: "pointer",
+                margin: "auto",
+                padding: 1,
+              }}
+              onClick={() => setPage(1)}
+            >
+              Products
+            </Typography>
+            <Typography
+              variant="h6"
+              component="div"
+              sx={{
+                color: page === 2 ? "white" : "#1484CB",
+                background: page === 2 ? "#1484CB" : "white",
+                borderRadius: "45%",
+                cursor: "pointer",
+                margin: "auto",
+                padding: 1,
+              }}
+              onClick={() => setPage(2)}
+            >
+              About
+            </Typography>
+          </div>
           <Button
             color="inherit"
             sx={{
