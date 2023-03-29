@@ -3,8 +3,9 @@ import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import { Button } from "@mui/material";
+import { ProductsContext } from "../context/ProductsContext";
 function BasketCard(product) {
- 
+  const { handleRemoveClick } = React.useContext(ProductsContext);
   return (
     <Box sx={{ display: "flex", justifyContent: "space-between" }}>
       <CardMedia
@@ -17,8 +18,9 @@ function BasketCard(product) {
       <Box sx={{ display: "flex", flexDirection: "column" }}>
         <Typography
           sx={{
-            width: 300,
-            fontSize: 14,
+            maxWidth: 300,
+            width: "100%",
+            fontSize: "10px",
             fontWeight: "bold",
             textAlign: "center",
           }}
@@ -42,7 +44,13 @@ function BasketCard(product) {
         >
           {"$" + product.product.quantity * product.product.price.value}
         </Typography>
-        <Button>Remove</Button>
+        <Button
+          onClick={() => {
+            handleRemoveClick(product.product.id, product.product.quantity);
+          }}
+        >
+          Remove
+        </Button>
       </Box>
     </Box>
   );

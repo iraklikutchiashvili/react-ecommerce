@@ -10,10 +10,12 @@ const BasketCheckout = () => {
   const { productsQtyInBasket, productsInBasket } =
     React.useContext(ProductsContext);
 
-
-  const totalPrice = productsInBasket !== null && productsInBasket.map(product => product.quantity * product.price.value).reduce((total, current) => total + current)
-
-
+  const totalPrice =
+    productsInBasket !== null &&
+    productsInBasket.length !== 0 &&
+    productsInBasket
+      .map((product) => product.quantity * product.price.value)
+      .reduce((total, current) => total + current);
 
   return (
     <>
@@ -31,8 +33,7 @@ const BasketCheckout = () => {
           component="div"
           color="text.primary"
         >
-          Total Price:{" "}
-          ${totalPrice ? totalPrice : 0}
+          Total Price: ${totalPrice ? totalPrice : 0}
         </Typography>
       </Box>
 

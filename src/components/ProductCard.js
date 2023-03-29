@@ -56,14 +56,14 @@ function ProductCard({ data }) {
       />
       <CardContent
         sx={{
-          height: 80,
           display: "flex",
           flexDirection: "column",
+          height: 70,
         }}
       >
         <Typography
           sx={{
-            fontSize: "20px",
+            fontSize: "15px",
             fontWeight: "bold",
             textAlign: "center",
             color: "#1484cb",
@@ -80,7 +80,7 @@ function ProductCard({ data }) {
       >
         {products.price.text}
       </Typography>
-      <CardActions sx={{ display: "flex", justifyContent: "center", mt: 3 }}>
+      <CardActions sx={{ display: "flex", justifyContent: "center", mt: 1 }}>
         <Button
           variant="outlined"
           color="primary"
@@ -105,7 +105,7 @@ function ProductCard({ data }) {
         variant="contained"
         size="small"
         fullWidth={true}
-        sx={{ mt: 3 }}
+        sx={{ mt: 1 }}
       >
         Add To Basket
       </Button>

@@ -20,7 +20,7 @@ const MyBasket = () => {
         margin: "150px auto",
       }}
     >
-      {!productsInBasket ? (
+      {!productsInBasket || productsInBasket.length === 0 ? (
         <p>Empty</p>
       ) : (
         productsInBasket.map((product) => (

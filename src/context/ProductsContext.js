@@ -9,6 +9,7 @@ const ProductsContextProvider = (props) => {
   });
   const [productsInBasket, setProductsInBasket] = useState(() => {
     const localData = JSON.parse(localStorage.getItem("products"));
+    console.log(localData);
     return localData && localData;
   });
 
@@ -20,6 +21,14 @@ const ProductsContextProvider = (props) => {
     setProductsQtyInBasket((prev) => prev + products.quantity);
     setProducts((prev) => ({ ...prev, quantity: 0 }));
   };
+  const handleRemoveClick = (id, quantity) => {
+    const filteredProducts = JSON.parse(
+      localStorage.getItem("products")
+    ).filter((product) => product.id !== id);
+    setProductsInBasket([...filteredProducts]);
+    setProductsQtyInBasket((prev) => prev - quantity);
+    localStorage.setItem("products", JSON.stringify(filteredProducts));
+  };
   useEffect(() => {
     localStorage.setItem("products", JSON.stringify(productsInBasket));
   }, [productsInBasket]);
@@ -28,7 +37,12 @@ const ProductsContextProvider = (props) => {
   }, [productsQtyInBasket]);
   return (
     <ProductsContext.Provider
-      value={{ productsQtyInBasket, productsInBasket, handleAddToBasketClick }}
+      value={{
+        productsQtyInBasket,
+        productsInBasket,
+        handleAddToBasketClick,
+        handleRemoveClick,
+      }}
     >
       {props.children}
     </ProductsContext.Provider>

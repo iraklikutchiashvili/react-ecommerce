@@ -13,7 +13,7 @@ const BasketHoverContent = () => {
     <Card>
       <CardContent sx={{ p: "16px 0 16px 16px" }}>
         <Box sx={{ height: 250, pr: 2, overflowY: "scroll" }}>
-          {productsInBasket === null ? (
+          {productsInBasket === null || productsInBasket.length === 0 ? (
             <p>Basket Is Empty</p>
           ) : (
             productsInBasket.map((product) => {

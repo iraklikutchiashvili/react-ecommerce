@@ -15,7 +15,7 @@ const Products = () => {
       params: {
         store: "US",
         offset: "5",
-        categoryId: "4209",
+        categoryId: "4210",
         limit: "24",
         country: "US",
         sort: "freshness",
@@ -24,7 +24,7 @@ const Products = () => {
         lang: "en-US",
       },
       headers: {
-        "X-RapidAPI-Key": "973a84123amsh3c9bee769a9a954p15cecbjsnc2b0f933518d",
+        "X-RapidAPI-Key": "9336dee78fmsh36a78241f153378p1d21cbjsneb31177562ec",
         "X-RapidAPI-Host": "asos2.p.rapidapi.com",
       },
     };
