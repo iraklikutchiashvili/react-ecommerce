@@ -9,11 +9,13 @@ import MenuIcon from "@mui/icons-material/Menu";
 import { PageContext } from "../context/PageContext";
 import { ProductsContext } from "../context/ProductsContext";
 import BasketHoverContent from "./BasketHoverContent";
+import CloseIcon from '@mui/icons-material/Close';
 
 function NavBar() {
   const { page, setPage } = React.useContext(PageContext);
   const { productsQtyInBasket } = React.useContext(ProductsContext);
   const basketContentRef = React.useRef(null);
+  const navRef = React.useRef(null);
   const [showNav, setShowNav] = React.useState(false);
 
   const showBasket = () => {
@@ -23,7 +25,11 @@ function NavBar() {
     basketContentRef.current.classList.remove("show");
   };
 
-  const handleBurgerClick = () => {};
+  const handleBurgerClick = () => {
+    setShowNav(prev => !prev)
+    navRef.current.classList.toggle("burger-nav");
+  };
+
 
   return (
     <Box>
@@ -35,19 +41,19 @@ function NavBar() {
         }}
       >
         <Toolbar>
-          <div className="burger-icon">
+          <div className="burger-icon" onClick={handleBurgerClick}>
             <IconButton
               size="large"
               edge="start"
               color="inherit"
               aria-label="menu"
               sx={{ color: "#1484CB" }}
-              onClick={handleBurgerClick}
             >
-              <MenuIcon sx={{ fontSize: 35 }} />
+              <CloseIcon sx={{ fontSize: 35, display: showNav ? "block" : "none" }} />
+              <MenuIcon sx={{ fontSize: 35, display: showNav ? "none" : "block" }} />
             </IconButton>
           </div>
-          <div className="nav-links">
+          <div className="nav-links" ref={navRef}>
             <Typography
               variant="h6"
               component="div"
