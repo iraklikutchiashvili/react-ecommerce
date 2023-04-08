@@ -14,7 +14,7 @@ const BasketCheckout = () => {
     productsInBasket !== null &&
     productsInBasket.length !== 0 &&
     productsInBasket
-      .map((product) => product.quantity * product.price.value)
+      .map((product) => product.quantity * product.price)
       .reduce((total, current) => total + current);
 
   return (
@@ -33,7 +33,7 @@ const BasketCheckout = () => {
           component="div"
           color="text.primary"
         >
-          Total Price: ${totalPrice ? totalPrice : 0}
+          Total Price: ${totalPrice ? totalPrice.toFixed(2) : 0}
         </Typography>
       </Box>
 

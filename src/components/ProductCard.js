@@ -20,9 +20,9 @@ function ProductCard({ data }) {
   React.useEffect(() => {
     setProducts((prev) => ({
       ...prev,
-      name: data.name.toUpperCase(),
-      price: data.price.current,
-      img: `https://${data.imageUrl}`,
+      name: data.title.toUpperCase(),
+      price: data.price,
+      img: data.image,
       id: data.id,
     }));
   }, []);
@@ -48,10 +48,10 @@ function ProductCard({ data }) {
       }}
     >
       <CardMedia
-        sx={{ objectFit: "cover" }}
+        sx={{ objectFit: "contain" }}
         component="img"
         alt="product"
-        height="300"
+        height="200"
         image={products.img}
       />
       <CardContent
@@ -78,7 +78,7 @@ function ProductCard({ data }) {
         variant="h6"
         component="div"
       >
-        {products.price.text}
+        ${products.price}
       </Typography>
       <CardActions sx={{ display: "flex", justifyContent: "center", mt: 1 }}>
         <Button

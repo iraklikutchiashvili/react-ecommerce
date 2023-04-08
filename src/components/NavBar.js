@@ -9,7 +9,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 import { PageContext } from "../context/PageContext";
 import { ProductsContext } from "../context/ProductsContext";
 import BasketHoverContent from "./BasketHoverContent";
-import CloseIcon from '@mui/icons-material/Close';
+import CloseIcon from "@mui/icons-material/Close";
 
 function NavBar() {
   const { page, setPage } = React.useContext(PageContext);
@@ -26,10 +26,9 @@ function NavBar() {
   };
 
   const handleBurgerClick = () => {
-    setShowNav(prev => !prev)
+    setShowNav((prev) => !prev);
     navRef.current.classList.toggle("burger-nav");
   };
-
 
   return (
     <Box>
@@ -49,8 +48,12 @@ function NavBar() {
               aria-label="menu"
               sx={{ color: "#1484CB" }}
             >
-              <CloseIcon sx={{ fontSize: 35, display: showNav ? "block" : "none" }} />
-              <MenuIcon sx={{ fontSize: 35, display: showNav ? "none" : "block" }} />
+              <CloseIcon
+                sx={{ fontSize: 35, display: showNav ? "block" : "none" }}
+              />
+              <MenuIcon
+                sx={{ fontSize: 35, display: showNav ? "none" : "block" }}
+              />
             </IconButton>
           </div>
           <div className="nav-links" ref={navRef}>

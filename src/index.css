@@ -1,15 +1,24 @@
 .App {
-  max-width: 1800px;
+  max-width: 2500px;
   width: 100%;
   margin: 70px auto;
 }
 .products {
+  padding-top: 80px;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 40px;
+  gap: 20px;
 }
-
+.categories {
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
 .basketQty {
   display: flex;
   justify-content: center;
@@ -57,7 +66,28 @@
   width: 100%;
   display: none;
 }
-@media only screen and (max-width: 745px) {
+.home-page {
+  padding-top: 15px;
+}
+.cover-img {
+  background-image: url("./images/cover.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 400px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.trending-products {
+  margin-top: 50px;
+  padding: 50px;
+  color: #1484cb;
+  font-size: 30px;
+  font-weight: bold;
+}
+
+@media only screen and (max-width: 900px) {
   .burger-icon {
     display: block;
   }
@@ -77,4 +107,6 @@
   .show {
     display: none;
   }
+}
+@media only screen and (max-width: 510px) {
 }

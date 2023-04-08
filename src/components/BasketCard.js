@@ -42,7 +42,7 @@ function BasketCard(product) {
           sx={{ mb: 4, textAlign: "center", fontSize: 15, fontWeight: "bold" }}
           component="div"
         >
-          {"$" + product.product.quantity * product.product.price.value}
+          {"$" + product.product.quantity * product.product.price}
         </Typography>
         <Button
           onClick={() => {
