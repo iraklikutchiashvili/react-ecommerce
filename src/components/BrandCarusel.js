@@ -8,13 +8,13 @@ import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
 import { CardMedia } from '@mui/material';
 
 const steps = [
-`https://1000logos.net/wp-content/uploads/2021/04/U.S.-Polo-Assn-logo.png`,  
-'https://cdn.dribbble.com/users/1588614/screenshots/5975830/zara-logo-redesign.jpg', 
-`https://cloudfront-us-east-2.images.arcpublishing.com/reuters/LKMRQKPNWBNZTION35UVELC3WQ.jpg`,
-'https://www.wpdiamonds.com/wp-content/uploads/2021/01/WPD-Article-Body-Images-2021-02-08T191317.673.png',
-'https://www.wpdiamonds.com/wp-content/uploads/2021/01/WPD-Article-Body-Images-2021-02-08T131557.420.png',
-'https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/Samsung_Logo.svg/2560px-Samsung_Logo.svg.png',
-'https://www.pngplay.com/wp-content/uploads/7/Dell-Transparent-PNG.png'
+    `https://1000logos.net/wp-content/uploads/2021/04/U.S.-Polo-Assn-logo.png`,  
+    'https://cdn.dribbble.com/users/1588614/screenshots/5975830/zara-logo-redesign.jpg', 
+    `https://cloudfront-us-east-2.images.arcpublishing.com/reuters/LKMRQKPNWBNZTION35UVELC3WQ.jpg`,
+    'https://www.wpdiamonds.com/wp-content/uploads/2021/01/WPD-Article-Body-Images-2021-02-08T191317.673.png',
+    'https://www.wpdiamonds.com/wp-content/uploads/2021/01/WPD-Article-Body-Images-2021-02-08T131557.420.png',
+    'https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/Samsung_Logo.svg/2560px-Samsung_Logo.svg.png',
+    'https://www.pngplay.com/wp-content/uploads/7/Dell-Transparent-PNG.png'
 ];
 
 const BrandsCarusel = () => {
@@ -50,7 +50,7 @@ const BrandsCarusel = () => {
             onClick={handleNext}
             disabled={activeStep === maxSteps - 1}
           >
-            Next
+            
             {theme.direction === 'rtl' ? (
               <KeyboardArrowLeft />
             ) : (
@@ -65,7 +65,7 @@ const BrandsCarusel = () => {
             ) : (
               <KeyboardArrowLeft />
             )}
-            Back
+            
           </Button>
         }
       />
