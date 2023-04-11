@@ -11,7 +11,6 @@
   gap: 20px;
 }
 .categories {
-  max-width: 1200px;
   width: 100%;
   margin: 0 auto;
   display: flex;
@@ -86,6 +85,11 @@
   font-size: 30px;
   font-weight: bold;
 }
+.trending-products h1 {
+  width: 240px;
+}
+
+
 
 @media only screen and (max-width: 900px) {
   .burger-icon {
@@ -110,3 +114,4 @@
 }
 @media only screen and (max-width: 510px) {
 }
+

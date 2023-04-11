@@ -7,18 +7,20 @@ function TrendingProduct(data) {
       sx={{
         display: "flex",
         flexDirection: "column",
-        maxWidth: "300px",
+        maxWidth: "2000px",
+        height: "500px",
         width: "100%",
-        mt: "20px",
+        m: "20px auto",
         gap: "10px",
         p: "10px",
+        boxShadow: "none"
       }}
     >
       <CardMedia
         sx={{ objectFit: "contain" }}
         component="img"
         alt="product"
-        height="200"
+        height="300"
         image={data.data.image}
       />
       <Typography
@@ -27,6 +29,7 @@ function TrendingProduct(data) {
           fontWeight: "bold",
           textAlign: "center",
           color: "#1484cb",
+          width: "100%"
         }}
         component="div"
       >

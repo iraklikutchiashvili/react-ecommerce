@@ -1,0 +1,34 @@
+.carousel-container .control-next.control-arrow,
+.carousel-container .control-prev.control-arrow{
+    background-color: #1484cb;
+    opacity: 0.6;
+    height: 50px;
+    top: 33%;
+}
+.carousel-container .control-next.control-arrow:hover,
+.carousel-container .control-prev.control-arrow:hover {
+    background-color: #1484cb;
+    opacity: 1;
+}
+
+.carousel-container .slide {
+    height: 500px;
+    display: flex;
+}
+.carousel-container {
+    margin-top: 20px;  
+}
+.carousel-container .carousel .control-dots .dot {
+    background-color: #1484cb;
+}
+.carousel-container .carousel-status {
+    color: #1484cb;
+    font-size: 20px;
+    text-shadow: none;
+}
+@media only screen and (max-width: 900px) {
+    .carousel-container .control-next.control-arrow,
+    .carousel-container .control-prev.control-arrow{
+        visibility: hidden;
+    }
+}
