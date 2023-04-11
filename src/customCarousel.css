@@ -20,6 +20,7 @@
 }
 .carousel-container .carousel .control-dots .dot {
     background-color: #1484cb;
+    box-shadow: none;
 }
 .carousel-container .carousel-status {
     color: #1484cb;

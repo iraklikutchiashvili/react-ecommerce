@@ -87,9 +87,37 @@
 }
 .trending-products h1 {
   width: 240px;
+  padding: 5px;
 }
 
-
+.about-page {
+  margin-top: 200px;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  gap: 50px;
+}
+.buttons {
+  max-width: 300px;
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-around;
+}
+.about-content,
+.contact-content {
+  max-width: 900px;
+  width: 90%;
+  margin: 0 auto;
+  font-size: 20px;
+  font-weight: 500;
+}
+.about-content h1,
+.contact-content h1 {
+  font-size: 30px;
+  margin-top: 50px;
+  color: #1484cb;
+} 
 
 @media only screen and (max-width: 900px) {
   .burger-icon {

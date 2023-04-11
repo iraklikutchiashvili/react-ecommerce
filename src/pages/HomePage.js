@@ -58,6 +58,7 @@ const HomePage = () => {
           
           
             <Carousel
+              showThumbs={false}
               showArrows={true}
               autoPlay={true}
               infiniteLoop={true}
