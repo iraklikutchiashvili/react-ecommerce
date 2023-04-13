@@ -115,9 +115,31 @@
 .about-content h1,
 .contact-content h1 {
   font-size: 30px;
-  margin-top: 50px;
+  margin-top: 150px;
   color: #1484cb;
 } 
+.product-page {
+  max-width: 1600px;
+  width: 100%;
+  padding-top: 100px;
+  margin: 0 auto;
+  height: auto;
+}
+.body {
+  display: flex;
+  justify-content: space-around;
+  gap: 20px;
+  height: auto;
+}
+.product-details {
+  display: grid;
+  max-width: 700px;
+  width: 100%;
+  row-gap: 30px;
+  grid-template-rows: 70px 70px auto 100px;
+  height: auto;
+  padding: 5px 5px 0 5px;
+}
 
 @media only screen and (max-width: 900px) {
   .burger-icon {
@@ -138,6 +160,12 @@
   }
   .show {
     display: none;
+  }
+  .body {
+    flex-wrap: wrap;
+  }
+  .product-page {
+    padding: 0;
   }
 }
 @media only screen and (max-width: 510px) {

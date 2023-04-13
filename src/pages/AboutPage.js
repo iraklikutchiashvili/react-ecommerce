@@ -71,10 +71,10 @@ const AboutPage = () => {
           <Card 
           sx={{...socialIconsStyles, display: expand ? "flex" : "none", }}
           >
-            <SocialIcon url="https://twitter.com" />
-            <SocialIcon url="https://www.tumblr.com" />
-            <SocialIcon url="https://www.instagram.com" />
-            <SocialIcon url="https://www.facebook.com" />
+            <SocialIcon url="https://twitter.com" target="_blank"/>
+            <SocialIcon url="https://www.tumblr.com" target="_blank" />
+            <SocialIcon url="https://www.instagram.com" target="_blank" />
+            <SocialIcon url="https://www.facebook.com" target="_blank" />
           </Card>
         </Card>
         <Card sx={{marginTop: "100px", ...cardStyles}}>

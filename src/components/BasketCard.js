@@ -14,7 +14,7 @@ function BasketCard(product) {
         component="img"
         alt="img"
         height="100"
-        image={product.product.img}
+        image={product.product.image}
       />
       <Box sx={{ display: "flex", flexDirection: "column" }}>
         <Typography
@@ -27,7 +27,9 @@ function BasketCard(product) {
           }}
           component="div"
         >
-          <Link to={`/products/${product.product.id}`}>{product.product.name}</Link>
+          <Link to={`/products/${product.product.id}`}>
+            {product.product.title}
+          </Link>
         </Typography>
         <Typography
           sx={{ textAlign: "center" }}
