@@ -4,6 +4,7 @@ import axios from "axios";
 import { CardMedia, Typography, Box, Card } from "@mui/material";
 import IncreaseDecrease from "../components/IncreaseDecrease";
 import StarIcon from "@mui/icons-material/Star";
+import AddComment from "../components/AddComment";
 
 function ProductPage() {
   const { id } = useParams();
@@ -87,6 +88,7 @@ function ProductPage() {
           <IncreaseDecrease data={product} action={setProduct} />
         </Card>
       </div>
+      <AddComment />
     </main>
   );
 }
