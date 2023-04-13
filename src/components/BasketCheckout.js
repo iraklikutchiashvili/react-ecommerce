@@ -1,15 +1,15 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Button } from "@mui/material";
 import { ProductsContext } from "../context/ProductsContext";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import { PageContext } from "../context/PageContext";
+import { Link } from "react-router-dom";
 
 const BasketCheckout = () => {
-  const { setPage } = React.useContext(PageContext);
   const { productsQtyInBasket, productsInBasket } =
     React.useContext(ProductsContext);
-
+  const {setPage} = React.useContext(PageContext)
   const totalPrice =
     productsInBasket !== null &&
     productsInBasket.length !== 0 &&
@@ -38,16 +38,16 @@ const BasketCheckout = () => {
       </Box>
 
       <Button
-        sx={{ mt: 1, borderRadius: 15 }}
+        sx={{ mt: 1, borderRadius: 15, height: "50px", p: 0 }}
         variant="contained"
         size="medium"
         fullWidth={true}
         onClick={() => {
-          setPage(3);
+          setPage(3)
           window.scrollTo(0, 0);
         }}
       >
-        View Basket & Checkout
+        <Link to="basket">View Basket & Checkout</Link>
       </Button>
     </>
   );

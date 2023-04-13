@@ -6,6 +6,7 @@ import CardMedia from "@mui/material/CardMedia";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import { ProductsContext } from "../context/ProductsContext";
+import { Link } from "react-router-dom";
 
 function ProductCard({ data }) {
   const { handleAddToBasketClick } = React.useContext(ProductsContext);
@@ -40,76 +41,78 @@ function ProductCard({ data }) {
   };
 
   return (
-    <Card
-      sx={{
-        maxWidth: 350,
-        width: "100%",
-        marginTop: 10,
-      }}
-    >
-      <CardMedia
-        sx={{ objectFit: "contain" }}
-        component="img"
-        alt="product"
-        height="200"
-        image={products.img}
-      />
-      <CardContent
+      <Card
         sx={{
-          display: "flex",
-          flexDirection: "column",
-          height: 70,
+          maxWidth: 350,
+          width: "100%",
+          marginTop: 10,
         }}
       >
-        <Typography
+        <Link style={{maxWidth: "200px", width: "100%", height: "auto", margin: "0 auto"}} to={`/products/${products.id}`}>
+          <CardMedia
+            sx={{ objectFit: "contain" }}
+            component="img"
+            alt="product"
+            height="200"
+            image={products.img}
+          />
+        </Link>
+        <CardContent
           sx={{
-            fontSize: "15px",
-            fontWeight: "bold",
-            textAlign: "center",
-            color: "#1484cb",
+            display: "flex",
+            flexDirection: "column",
+            height: 70,
           }}
+        >
+          <Typography
+            sx={{
+              fontSize: "15px",
+              fontWeight: "bold",
+              textAlign: "center",
+              color: "#1484cb",
+            }}
+            component="div"
+          >
+            <Link to={`/products/${products.id}`}>{products.name}</Link>
+          </Typography>
+        </CardContent>
+        <Typography
+          sx={{ textAlign: "center", fontWeight: "bold" }}
+          variant="h6"
           component="div"
         >
-          {products.name}
+          ${products.price}
         </Typography>
-      </CardContent>
-      <Typography
-        sx={{ textAlign: "center", fontWeight: "bold" }}
-        variant="h6"
-        component="div"
-      >
-        ${products.price}
-      </Typography>
-      <CardActions sx={{ display: "flex", justifyContent: "center", mt: 1 }}>
-        <Button
-          variant="outlined"
-          color="primary"
-          sx={{ fontSize: 25, height: 30 }}
-          onClick={increaseProductsQty}
-        >
-          +
-        </Button>
-        <b style={{ marginLeft: 7, fontSize: 20 }}>{products.quantity}</b>
-        <Button
-          variant="outlined"
-          color="error"
-          sx={{ fontSize: 25, height: 30 }}
-          onClick={decreaseProductsQty}
-        >
-          -
-        </Button>
-      </CardActions>
+        <CardActions sx={{ display: "flex", justifyContent: "center", mt: 1 }}>
+          <Button
+            variant="outlined"
+            color="primary"
+            sx={{ fontSize: 25, height: 30 }}
+            onClick={increaseProductsQty}
+          >
+            +
+          </Button>
+          <b style={{ marginLeft: 7, fontSize: 20 }}>{products.quantity}</b>
+          <Button
+            variant="outlined"
+            color="error"
+            sx={{ fontSize: 25, height: 30 }}
+            onClick={decreaseProductsQty}
+          >
+            -
+          </Button>
+        </CardActions>
 
-      <Button
-        onClick={() => handleAddToBasketClick(products, setProducts)}
-        variant="contained"
-        size="small"
-        fullWidth={true}
-        sx={{ mt: 1 }}
-      >
-        Add To Basket
-      </Button>
-    </Card>
+        <Button
+          onClick={() => handleAddToBasketClick(products, setProducts)}
+          variant="contained"
+          size="small"
+          fullWidth={true}
+          sx={{ mt: 1 }}
+        >
+          Add To Basket
+        </Button>
+      </Card>
   );
 }
 

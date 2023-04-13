@@ -1,5 +1,6 @@
 import { Card, CardMedia, Typography } from "@mui/material";
 import React from "react";
+import { Link } from "react-router-dom";
 
 function TrendingProduct(data) {
   return (
@@ -16,25 +17,27 @@ function TrendingProduct(data) {
         boxShadow: "none"
       }}
     >
-      <CardMedia
-        sx={{ objectFit: "contain" }}
-        component="img"
-        alt="product"
-        height="300"
-        image={data.data.image}
-      />
-      <Typography
-        sx={{
-          fontSize: "15px",
-          fontWeight: "bold",
-          textAlign: "center",
-          color: "#1484cb",
-          width: "100%"
-        }}
-        component="div"
-      >
-        {data.data.title}
-      </Typography>
+      <Link style={{maxWidth: "300px", width: "100%", margin: "0 auto"}} to={`/products/${data.data.id}`}>
+        <CardMedia
+          sx={{ objectFit: "contain" }}
+          component="img"
+          alt="product"
+          height="300"
+          image={data.data.image}
+        />
+        <Typography
+          sx={{
+            fontSize: "15px",
+            fontWeight: "bold",
+            textAlign: "center",
+            color: "#1484cb",
+            width: "100%"
+          }}
+          component="div"
+        >
+          {data.data.title}
+        </Typography>
+      </Link>
     </Card>
   );
 }

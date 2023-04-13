@@ -4,6 +4,7 @@ import { ProductsContext } from "../context/ProductsContext";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import { PageContext } from "../context/PageContext";
+import { Link } from "react-router-dom";
 
 const Checkout = () => {
   const { productsQtyInBasket, productsInBasket } =
@@ -47,11 +48,11 @@ const Checkout = () => {
       </Box>
       <Box sx={{ mt: 1, display: "flex", justifyContent: "space-between" }}>
         <Button
-          sx={{ borderRadius: 15, height: 50, width: 150, fontSize: "10px" }}
+          sx={{ borderRadius: 15, height: 50, width: 150, fontSize: "10px", p: 0 }}
           variant="outlined"
           onClick={handleClick}
         >
-          Continue Shopping
+          <Link to="/products">Continue Shopping</Link>
         </Button>
         <Button sx={{ borderRadius: 15, height: 50 }} variant="contained">
           Proceed to Checkout

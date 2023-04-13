@@ -8,6 +8,7 @@ import TrendingProduct from "../components/TrendingProduct";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from "react-responsive-carousel";
 import "../customCarousel.css"
+import { Link } from "react-router-dom";
 
 const HomePage = () => {
   const [trendingProducts, setTrendingProducts] = useState([]);
@@ -51,9 +52,10 @@ const HomePage = () => {
               width: "100%",
               height: "50px",
               margin: "0 auto",
+              p: 0,
             }}
           >
-            Shop Now
+            <Link style={{fontSize: "16px"}} to="products">Shop Now</Link>
           </Button>
           
           

@@ -4,6 +4,7 @@ import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import { Button } from "@mui/material";
 import { ProductsContext } from "../context/ProductsContext";
+import { Link } from "react-router-dom";
 function BasketCard(product) {
   const { handleRemoveClick } = React.useContext(ProductsContext);
   return (
@@ -26,7 +27,7 @@ function BasketCard(product) {
           }}
           component="div"
         >
-          {product.product.name}
+          <Link to={`/products/${product.product.id}`}>{product.product.name}</Link>
         </Typography>
         <Typography
           sx={{ textAlign: "center" }}
