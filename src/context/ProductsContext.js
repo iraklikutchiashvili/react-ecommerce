@@ -1,4 +1,5 @@
 import React, { createContext, useEffect, useState } from "react";
+import uuid from "react-uuid";
 
 export const ProductsContext = createContext();
 
@@ -15,7 +16,9 @@ const ProductsContextProvider = (props) => {
   const handleAddToBasketClick = (products, setProducts) => {
     products.quantity > 0 &&
       setProductsInBasket((prev) => {
-        return prev !== null ? [...prev, { ...products }] : [{ ...products }];
+        return prev !== null
+          ? [...prev, { ...products, uid: uuid() }]
+          : [{ ...products, uid: uuid() }];
       });
     setProductsQtyInBasket((prev) => prev + products.quantity);
     setProducts((prev) => ({ ...prev, quantity: 0 }));
@@ -23,7 +26,7 @@ const ProductsContextProvider = (props) => {
   const handleRemoveClick = (id, quantity) => {
     const filteredProducts = JSON.parse(
       localStorage.getItem("products")
-    ).filter((product) => product.id !== id);
+    ).filter((product) => product.uid !== id);
     setProductsInBasket([...filteredProducts]);
     setProductsQtyInBasket((prev) => prev - quantity);
     localStorage.setItem("products", JSON.stringify(filteredProducts));

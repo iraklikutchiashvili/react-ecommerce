@@ -2,14 +2,11 @@ import * as React from "react";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
-import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
-import { ProductsContext } from "../context/ProductsContext";
 import { Link } from "react-router-dom";
 import IncreaseDecrease from "./IncreaseDecrease";
 
 function ProductCard({ data }) {
-  const { handleAddToBasketClick } = React.useContext(ProductsContext);
   const [products, setProducts] = React.useState({
     quantity: 0,
     title: "",
@@ -28,6 +25,10 @@ function ProductCard({ data }) {
     }));
   }, []);
 
+  const scrollToTop = () => {
+    window.scrollTo(0, 0);
+  };
+
   return (
     <Card
       sx={{
@@ -44,6 +45,7 @@ function ProductCard({ data }) {
           margin: "0 auto",
         }}
         to={`/products/${products.id}`}
+        onClick={scrollToTop}
       >
         <CardMedia
           sx={{ objectFit: "contain" }}
@@ -69,7 +71,9 @@ function ProductCard({ data }) {
           }}
           component="div"
         >
-          <Link to={`/products/${products.id}`}>{products.title}</Link>
+          <Link onClick={scrollToTop} to={`/products/${products.id}`}>
+            {products.title}
+          </Link>
         </Typography>
       </CardContent>
       <Typography

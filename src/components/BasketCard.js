@@ -45,11 +45,11 @@ function BasketCard(product) {
           sx={{ mb: 4, textAlign: "center", fontSize: 15, fontWeight: "bold" }}
           component="div"
         >
-          {"$" + product.product.quantity * product.product.price}
+          {"$" + (product.product.quantity * product.product.price).toFixed(2)}
         </Typography>
         <Button
           onClick={() => {
-            handleRemoveClick(product.product.id, product.product.quantity);
+            handleRemoveClick(product.product.uid, product.product.quantity);
           }}
         >
           Remove
