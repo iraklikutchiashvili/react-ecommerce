@@ -11,6 +11,7 @@ import { ProductsContext } from "../context/ProductsContext";
 import BasketHoverContent from "./BasketHoverContent";
 import CloseIcon from "@mui/icons-material/Close";
 import { Link } from "react-router-dom";
+import { Avatar } from "@mui/material";
 
 function NavBar() {
   const { page, setPage } = React.useContext(PageContext);
@@ -34,15 +35,15 @@ function NavBar() {
   const navStyles = (page, curPage) => {
     return {
       color: page === curPage ? "white" : "#1484CB",
-      background: page === curPage ? "#1484CB" : "white",
+      background: page === curPage ? "#1484CB" : "inherit",
       borderRadius: "45%",
       margin: "auto",
       padding: 1,
-    }
-  }
+    };
+  };
 
   return (
-    <Box>
+    <Box className="navbar">
       <AppBar
         position="fixed"
         style={{
@@ -60,6 +61,7 @@ function NavBar() {
               sx={{ color: "#1484CB" }}
             >
               <CloseIcon
+                className="close-icon"
                 sx={{ fontSize: 35, display: showNav ? "block" : "none" }}
               />
               <MenuIcon
@@ -68,27 +70,32 @@ function NavBar() {
             </IconButton>
           </div>
           <div className="nav-links" ref={navRef}>
-            <Typography
-              variant="h6"
-              component="div"
-              sx={navStyles(page, 0)}
-            >
-              <Link onClick={() => setPage(0)} to="/">Home</Link>
-            </Typography>
-            <Typography
-              variant="h6"
-              component="div"
-              sx={navStyles(page, 1)}
-            >
-              <Link onClick={() => setPage(1)} to="products">Products</Link>
-            </Typography>
-            <Typography
-              variant="h6"
-              component="div"
-              sx={navStyles(page, 2)}
-            >
-              <Link  onClick={() => setPage(2)} to="about">About</Link>
-            </Typography>
+            <div className="nav-container">
+              <Link style={{ width: "auto" }} to="auth">
+                <Avatar
+                  onClick={() => setPage(4)}
+                  sx={{
+                    width: showNav ? "60px" : "40px",
+                    height: showNav ? "60px" : "40px",
+                  }}
+                />
+              </Link>
+              <Typography variant="h6" component="div" sx={navStyles(page, 0)}>
+                <Link onClick={() => setPage(0)} to="/">
+                  Home
+                </Link>
+              </Typography>
+              <Typography variant="h6" component="div" sx={navStyles(page, 1)}>
+                <Link onClick={() => setPage(1)} to="products">
+                  Products
+                </Link>
+              </Typography>
+              <Typography variant="h6" component="div" sx={navStyles(page, 2)}>
+                <Link onClick={() => setPage(2)} to="about">
+                  About
+                </Link>
+              </Typography>
+            </div>
           </div>
           <Button
             color="inherit"

@@ -2,12 +2,12 @@ import { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import uuid from "react-uuid";
 import Card from "@mui/material/Card";
-import { Button, CardContent, Box } from "@mui/material";
+import { Button } from "@mui/material";
 import { PageContext } from "../context/PageContext";
 import TrendingProduct from "../components/TrendingProduct";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from "react-responsive-carousel";
-import "../customCarousel.css"
+import "../css/customCarousel.css";
 import { Link } from "react-router-dom";
 
 const HomePage = () => {
@@ -55,25 +55,24 @@ const HomePage = () => {
               p: 0,
             }}
           >
-            <Link style={{fontSize: "16px"}} to="products">Shop Now</Link>
+            <Link style={{ fontSize: "16px" }} to="products">
+              Shop Now
+            </Link>
           </Button>
-          
-          
-            <Carousel
-              showThumbs={false}
-              showArrows={true}
-              autoPlay={true}
-              infiniteLoop={true}
-              selectedItem={trendingProducts[currentIndex]}
-              onChange={handleChange}
-              className="carousel-container"
-            >
-              {trendingProducts.map((product) => (
-                <TrendingProduct key={uuid()} data={product} />
-              ))}
-            </Carousel>
-            
-          
+
+          <Carousel
+            showThumbs={false}
+            showArrows={true}
+            autoPlay={true}
+            infiniteLoop={true}
+            selectedItem={trendingProducts[currentIndex]}
+            onChange={handleChange}
+            className="carousel-container"
+          >
+            {trendingProducts.map((product) => (
+              <TrendingProduct key={uuid()} data={product} />
+            ))}
+          </Carousel>
         </Card>
       </div>
     </main>
