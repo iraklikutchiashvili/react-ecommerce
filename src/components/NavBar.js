@@ -73,25 +73,46 @@ function NavBar() {
             <div className="nav-container">
               <Link style={{ width: "auto" }} to="auth">
                 <Avatar
-                  onClick={() => setPage(4)}
+                  onClick={() => {
+                    setPage(4);
+                    handleBurgerClick();
+                  }}
                   sx={{
-                    width: showNav ? "60px" : "40px",
-                    height: showNav ? "60px" : "40px",
+                    width: "50px",
+                    height: "50px",
                   }}
                 />
               </Link>
               <Typography variant="h6" component="div" sx={navStyles(page, 0)}>
-                <Link onClick={() => setPage(0)} to="/">
+                <Link
+                  onClick={() => {
+                    setPage(0);
+                    handleBurgerClick();
+                  }}
+                  to="/"
+                >
                   Home
                 </Link>
               </Typography>
               <Typography variant="h6" component="div" sx={navStyles(page, 1)}>
-                <Link onClick={() => setPage(1)} to="products">
+                <Link
+                  onClick={() => {
+                    setPage(1);
+                    handleBurgerClick();
+                  }}
+                  to="products"
+                >
                   Products
                 </Link>
               </Typography>
               <Typography variant="h6" component="div" sx={navStyles(page, 2)}>
-                <Link onClick={() => setPage(2)} to="about">
+                <Link
+                  onClick={() => {
+                    setPage(2);
+                    handleBurgerClick();
+                  }}
+                  to="about"
+                >
                   About
                 </Link>
               </Typography>

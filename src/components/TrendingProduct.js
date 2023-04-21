@@ -3,6 +3,9 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 function TrendingProduct(data) {
+  const scrollToTop = () => {
+    window.scrollTo(0, 0);
+  };
   return (
     <Card
       sx={{
@@ -14,10 +17,14 @@ function TrendingProduct(data) {
         m: "20px auto",
         gap: "10px",
         p: "10px",
-        boxShadow: "none"
+        boxShadow: "none",
       }}
     >
-      <Link style={{maxWidth: "300px", width: "100%", margin: "0 auto"}} to={`/products/${data.data.id}`}>
+      <Link
+        style={{ maxWidth: "300px", width: "100%", margin: "0 auto" }}
+        to={`/products/${data.data.id}`}
+        onClick={scrollToTop}
+      >
         <CardMedia
           sx={{ objectFit: "contain" }}
           component="img"
@@ -31,7 +38,7 @@ function TrendingProduct(data) {
             fontWeight: "bold",
             textAlign: "center",
             color: "#1484cb",
-            width: "100%"
+            width: "100%",
           }}
           component="div"
         >
