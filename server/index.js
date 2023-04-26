@@ -18,6 +18,7 @@ app.get("/", (req, res) => {
 app.get("/users", db.getAllUsers);
 app.get("/users/:id", db.getSingleUser);
 app.post("/users", db.createUser);
+app.post("/users/login", db.loginUser);
 
 const PORT = process.env.PORT || 5001;
 app.listen(PORT, () => {

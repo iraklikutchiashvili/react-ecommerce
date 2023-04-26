@@ -1,4 +1,6 @@
 require("dotenv").config();
+const bcrypt = require("bcrypt");
+const saltRounds = 10;
 const Pool = require("pg").Pool;
 const pool = new Pool({
   user: "postgres",
@@ -8,7 +10,7 @@ const pool = new Pool({
   port: 5432,
 });
 const getAllUsers = (req, res) => {
-  pool.query("SELECT * from users ORDER BY id ASC", (error, results) => {
+  pool.query("SELECT * from users ORDER BY user_id ASC", (error, results) => {
     if (error) {
       throw error;
     }
@@ -17,26 +19,53 @@ const getAllUsers = (req, res) => {
 };
 
 const getSingleUser = (req, res) => {
-  const id = parseInt(req.params.id);
-  pool.query("SELECT * FROM users WHERE id = $1", [id], (error, results) => {
-    if (error) {
-      throw error;
-    }
-    res.status(200).json(results.rows);
-  });
-};
-
-const createUser = (req, res) => {
-  const { name, email } = req.body;
-
+  const user_id = parseInt(req.params.id);
   pool.query(
-    "INSERT INTO users (name, email) VALUES ($1, $2) RETURNING *",
-    [name, email],
+    "SELECT * FROM users WHERE user_id = $1",
+    [user_id],
     (error, results) => {
       if (error) {
         throw error;
       }
-      res.status(201).send(`User added with ID: ${results.rows[0].id}`);
+      res.status(200).json(results.rows);
+    }
+  );
+};
+
+const createUser = (req, res) => {
+  const { name, email, password } = req.body;
+  const hash = bcrypt.hashSync(password, saltRounds);
+
+  pool.query(
+    "INSERT INTO users (name, email, password) VALUES ($1, $2, $3) RETURNING *",
+    [name, email, hash],
+    (error, results) => {
+      if (error) {
+        throw error;
+      }
+      res.status(201).send(`User added with ID: ${results.rows[0].user_id}`);
+    }
+  );
+};
+
+const loginUser = (req, res) => {
+  const { email, password } = req.body;
+  pool.query(
+    "SELECT password FROM users WHERE email = $1",
+    [email],
+    (error, results) => {
+      if (error) {
+        throw error;
+      }
+      if (results.rows.length === 0) {
+        res.status(203).send(`User with prompted email doesn't exist`);
+      } else {
+        if (bcrypt.compareSync(password, results.rows[0].password)) {
+          res.status(201).send(`Password for user matches`);
+        } else {
+          res.status(202).send(`Password is incorrect. Try again`);
+        }
+      }
     }
   );
 };
@@ -45,4 +74,5 @@ module.exports = {
   getAllUsers,
   getSingleUser,
   createUser,
+  loginUser,
 };
