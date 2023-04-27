@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Button, Card, TextField, Typography } from "@mui/material";
 import { Link } from "react-router-dom";
 import ErrorIcon from "@mui/icons-material/Error";
+import axios from "axios";
 
 const emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 
@@ -11,6 +12,7 @@ function ProfilePage() {
     email: "",
   });
   const [showErr, setShowErr] = useState(false);
+  const { setAuth } = useContext;
   const handleInputs = (e) => {
     const name = e.target.name;
     const input = e.target.value;
@@ -18,10 +20,25 @@ function ProfilePage() {
       return { ...prev, [name]: input };
     });
   };
+  const loginUser = (data) => {
+    axios.post("http://localhost:5000/users/login", data).then(
+      (res) => {
+        if (res.status === 201) {
+          alert("Succesfully logged in");
+          setAuth(true);
+        } else if (res.status === 202) {
+          alert("Password is incorrect. Try again!");
+        } else if (res.status === 203) {
+          alert("User doesn't exits");
+        }
+      },
+      (error) => console.log(error)
+    );
+  };
   const handleSubmit = () => {
     if (inputValues.password.length > 0 && emailRegex.test(inputValues.email)) {
       showErr && setShowErr(false);
-      alert("Logged In");
+      loginUser(inputValues);
       setInputValues({
         password: "",
         email: "",

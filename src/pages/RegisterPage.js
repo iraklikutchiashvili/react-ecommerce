@@ -1,17 +1,22 @@
-import { TextField, Card, Typography, Button } from "@mui/material";
-import React, { useState } from "react";
+import { TextField, Typography, Button, FormControl } from "@mui/material";
+import React, { useContext, useState } from "react";
+import axios from "axios";
 import ErrorIcon from "@mui/icons-material/Error";
+import { AuthContext } from "../context/AuthContext";
+import { useNavigate } from "react-router-dom";
 
 const emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 
 function RegisterPage() {
   const [inputValues, setInputValues] = useState({
-    fullname: "",
+    name: "",
     email: "",
     password: "",
     repassword: "",
   });
   const [showErr, setShowErr] = useState(false);
+  const { setAuth } = useContext(AuthContext);
+  const navigate = useNavigate();
   const handleInputs = (e) => {
     const name = e.target.name;
     const input = e.target.value;
@@ -19,18 +24,31 @@ function RegisterPage() {
       return { ...prev, [name]: input };
     });
   };
+  const postData = (data) => {
+    axios.post("http://localhost:5000/users", data).then(
+      (res) => {
+        if (res.status === 201) {
+          alert("Succesfully registered");
+          navigate("/auth", { replace: true });
+        }
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+  };
   const handleSubmit = () => {
     if (
-      inputValues.fullname.length > 0 &&
+      inputValues.name.length > 0 &&
       inputValues.password.length > 0 &&
       inputValues.repassword.length > 0 &&
       inputValues.password === inputValues.repassword &&
       emailRegex.test(inputValues.email)
     ) {
       showErr && setShowErr(false);
-      alert("Signed Up Succesfully");
+      postData(inputValues);
       setInputValues({
-        fullname: "",
+        name: "",
         email: "",
         password: "",
         repassword: "",
@@ -39,9 +57,10 @@ function RegisterPage() {
       setShowErr(true);
     }
   };
+
   return (
     <div className="auth-page">
-      <Card className="auth-content">
+      <FormControl className="auth-content">
         <Typography component="div" variant="h4" sx={{ color: "#1484cb" }}>
           SIGN UP
         </Typography>
@@ -52,13 +71,13 @@ function RegisterPage() {
         </div>
         <TextField
           onChange={handleInputs}
-          value={inputValues.fullname}
+          value={inputValues.name}
           className="email-pwd"
           size="large"
           id="outlined-name"
           label="Full Name"
           variant="outlined"
-          name="fullname"
+          name="name"
         />
         <TextField
           onChange={handleInputs}
@@ -98,7 +117,7 @@ function RegisterPage() {
         >
           Register
         </Button>
-      </Card>
+      </FormControl>
     </div>
   );
 }
