@@ -21,6 +21,9 @@ app.get("/users", db.getAllUsers);
 app.get("/users/:id", db.getSingleUser);
 app.post("/users", db.createUser);
 app.post("/users/login", db.loginUser);
+app.put("/comments", db.addComment);
+app.get("/comments", db.getAllComments);
+app.get("/comments/:id", db.getCommentByUserId);
 
 const PORT = process.env.PORT || 5001;
 app.listen(PORT, () => {

@@ -51,7 +51,7 @@ const createUser = (req, res) => {
 const loginUser = (req, res) => {
   const { email, password } = req.body;
   pool.query(
-    "SELECT password, name FROM users WHERE email = $1",
+    "SELECT * FROM users WHERE email = $1",
     [email],
     (error, results) => {
       if (error) {
@@ -70,9 +70,52 @@ const loginUser = (req, res) => {
   );
 };
 
+const addComment = (req, res) => {
+  const { user_id, user_name, comment } = req.body;
+  pool.query(
+    "INSERT INTO comments (user_id, user_name, comment) VALUES ($1, $2, $3) RETURNING *",
+    [user_id, user_name, comment],
+    (error, results) => {
+      if (error) {
+        throw error;
+      }
+      res.status(201).send(results.rows);
+    }
+  );
+};
+
+const getAllComments = (req, res) => {
+  pool.query(
+    "SELECT * from comments ORDER BY user_id ASC",
+    (error, results) => {
+      if (error) {
+        throw error;
+      }
+      res.status(200).send(results.rows);
+    }
+  );
+};
+
+const getCommentByUserId = (req, res) => {
+  const user_id = parseInt(req.params.id);
+  pool.query(
+    "SELECT * from comments WHERE user_id = $1",
+    [user_id],
+    (error, results) => {
+      if (error) {
+        throw error;
+      }
+      res.status(200).send(results.rows);
+    }
+  );
+};
+
 module.exports = {
   getAllUsers,
   getSingleUser,
   createUser,
   loginUser,
+  addComment,
+  getAllComments,
+  getCommentByUserId,
 };
