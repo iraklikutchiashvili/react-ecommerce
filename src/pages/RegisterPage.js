@@ -15,7 +15,7 @@ function RegisterPage() {
     repassword: "",
   });
   const [showErr, setShowErr] = useState(false);
-  const { setAuth } = useContext(AuthContext);
+  const { auth, setAuth } = useContext(AuthContext);
   const navigate = useNavigate();
   const handleInputs = (e) => {
     const name = e.target.name;
@@ -57,7 +57,6 @@ function RegisterPage() {
       setShowErr(true);
     }
   };
-
   return (
     <div className="auth-page">
       <FormControl className="auth-content">

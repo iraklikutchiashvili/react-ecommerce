@@ -178,6 +178,7 @@
   max-width: 350px;
   width: 100%;
 }
+
 @media only screen and (max-width: 900px) {
   .burger-icon {
     display: block;

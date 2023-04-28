@@ -12,10 +12,13 @@ import BasketHoverContent from "./BasketHoverContent";
 import CloseIcon from "@mui/icons-material/Close";
 import { Link } from "react-router-dom";
 import { Avatar } from "@mui/material";
+import { AuthContext } from "../context/AuthContext";
+import AuthAvatar from "./AuthAvatar";
 
 function NavBar() {
   const { page, setPage } = React.useContext(PageContext);
   const { productsQtyInBasket } = React.useContext(ProductsContext);
+  const { auth } = React.useContext(AuthContext);
   const basketContentRef = React.useRef(null);
   const navRef = React.useRef(null);
   const [showNav, setShowNav] = React.useState(false);
@@ -71,18 +74,22 @@ function NavBar() {
           </div>
           <div className="nav-links" ref={navRef}>
             <div className="nav-container">
-              <Link style={{ width: "auto" }} to="auth">
-                <Avatar
-                  onClick={() => {
-                    setPage(4);
-                    handleBurgerClick();
-                  }}
-                  sx={{
-                    width: "50px",
-                    height: "50px",
-                  }}
-                />
-              </Link>
+              {auth.isAuth ? (
+                <AuthAvatar />
+              ) : (
+                <Link style={{ width: "auto" }} to="auth">
+                  <Avatar
+                    onClick={() => {
+                      setPage(4);
+                      handleBurgerClick();
+                    }}
+                    sx={{
+                      width: "50px",
+                      height: "50px",
+                    }}
+                  />
+                </Link>
+              )}
               <Typography variant="h6" component="div" sx={navStyles(page, 0)}>
                 <Link
                   onClick={() => {

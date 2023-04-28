@@ -1,18 +1,22 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Button, Card, TextField, Typography } from "@mui/material";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import ErrorIcon from "@mui/icons-material/Error";
 import axios from "axios";
+import { AuthContext } from "../context/AuthContext";
+import { PageContext } from "../context/PageContext";
 
 const emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 
-function ProfilePage() {
+function LoginPage() {
   const [inputValues, setInputValues] = useState({
     password: "",
     email: "",
   });
   const [showErr, setShowErr] = useState(false);
-  const { setAuth } = useContext;
+  const { auth, setAuth } = useContext(AuthContext);
+  const { setPage } = useContext(PageContext);
+  const navigate = useNavigate();
   const handleInputs = (e) => {
     const name = e.target.name;
     const input = e.target.value;
@@ -24,8 +28,9 @@ function ProfilePage() {
     axios.post("http://localhost:5000/users/login", data).then(
       (res) => {
         if (res.status === 201) {
+          const initialsForAvatar = res.data.name.slice(0, 2);
+          setAuth({ ...auth, isAuth: true, avatar: initialsForAvatar });
           alert("Succesfully logged in");
-          setAuth(true);
         } else if (res.status === 202) {
           alert("Password is incorrect. Try again!");
         } else if (res.status === 203) {
@@ -39,6 +44,8 @@ function ProfilePage() {
     if (inputValues.password.length > 0 && emailRegex.test(inputValues.email)) {
       showErr && setShowErr(false);
       loginUser(inputValues);
+      navigate("/", { replace: true });
+      setPage(0);
       setInputValues({
         password: "",
         email: "",
@@ -106,4 +113,4 @@ function ProfilePage() {
   );
 }
 
-export default ProfilePage;
+export default LoginPage;

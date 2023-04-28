@@ -51,7 +51,7 @@ const createUser = (req, res) => {
 const loginUser = (req, res) => {
   const { email, password } = req.body;
   pool.query(
-    "SELECT password FROM users WHERE email = $1",
+    "SELECT password, name FROM users WHERE email = $1",
     [email],
     (error, results) => {
       if (error) {
@@ -61,7 +61,7 @@ const loginUser = (req, res) => {
         res.status(203).send(`User with prompted email doesn't exist`);
       } else {
         if (bcrypt.compareSync(password, results.rows[0].password)) {
-          res.status(201).send(`Password for user matches`);
+          res.status(201).send(results.rows[0]);
         } else {
           res.status(202).send(`Password is incorrect. Try again`);
         }
