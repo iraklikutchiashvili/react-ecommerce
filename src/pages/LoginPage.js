@@ -29,8 +29,18 @@ function LoginPage() {
       (res) => {
         if (res.status === 201) {
           const initialsForAvatar = res.data.name.slice(0, 2);
-          setAuth({ ...auth, isAuth: true, avatar: initialsForAvatar });
+          const user_id = res.data.user_id;
+          const user_name = res.data.name;
+          setAuth({
+            ...auth,
+            isAuth: true,
+            avatar: initialsForAvatar,
+            user_id: user_id,
+            user_name: user_name,
+          });
           alert("Succesfully logged in");
+          navigate("/", { replace: true });
+          setPage(0);
         } else if (res.status === 202) {
           alert("Password is incorrect. Try again!");
         } else if (res.status === 203) {
@@ -44,8 +54,6 @@ function LoginPage() {
     if (inputValues.password.length > 0 && emailRegex.test(inputValues.email)) {
       showErr && setShowErr(false);
       loginUser(inputValues);
-      navigate("/", { replace: true });
-      setPage(0);
       setInputValues({
         password: "",
         email: "",

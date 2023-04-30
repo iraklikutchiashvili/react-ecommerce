@@ -71,10 +71,10 @@ const loginUser = (req, res) => {
 };
 
 const addComment = (req, res) => {
-  const { user_id, user_name, comment } = req.body;
+  const { user_id, user_name, product_id, comment } = req.body;
   pool.query(
-    "INSERT INTO comments (user_id, user_name, comment) VALUES ($1, $2, $3) RETURNING *",
-    [user_id, user_name, comment],
+    "INSERT INTO comments (user_id, user_name, product_id, comment) VALUES ($1, $2, $3, $4) RETURNING *",
+    [user_id, user_name, product_id, comment],
     (error, results) => {
       if (error) {
         throw error;
@@ -96,11 +96,11 @@ const getAllComments = (req, res) => {
   );
 };
 
-const getCommentByUserId = (req, res) => {
-  const user_id = parseInt(req.params.id);
+const getCommentByProductId = (req, res) => {
+  const product_id = parseInt(req.params.id);
   pool.query(
-    "SELECT * from comments WHERE user_id = $1",
-    [user_id],
+    "SELECT * from comments WHERE product_id = $1",
+    [product_id],
     (error, results) => {
       if (error) {
         throw error;
@@ -117,5 +117,5 @@ module.exports = {
   loginUser,
   addComment,
   getAllComments,
-  getCommentByUserId,
+  getCommentByProductId,
 };

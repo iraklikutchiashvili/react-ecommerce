@@ -6,6 +6,8 @@ const AuthContextProvider = (props) => {
   const [auth, setAuth] = useState({
     isAuth: false,
     avatar: "",
+    user_id: null,
+    user_name: "",
   });
   return (
     <AuthContext.Provider value={{ auth, setAuth }}>
